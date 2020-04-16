@@ -1,5 +1,6 @@
 FROM debian:10
 
+ENV LANG="en_US.UTF-8"
 ENV DEBIAN_FRONTEND noninteractive
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
@@ -12,10 +13,6 @@ RUN apt install -y systemd logrotate python3-psutil python3-ldap python3-lxml py
 
 # Install Kimchi Dependencies
 RUN apt install -y gcc make autoconf automake git python3-pip python3-requests python3-mock gettext pkgconf xsltproc python3-dev pep8 pyflakes python3-yaml
-
-RUN apt-get -y install language-pack-en
-ENV LANG="en_US.UTF-8"
-
 RUN pip3 install cython libsass pre-commit
 
 RUN apt-get install -y python3-configobj python3-lxml python3-magic python3-paramiko python3-ldap spice-html5 novnc qemu-kvm python3-libvirt python3-parted python3-guestfs python3-pil python3-cherrypy3 libvirt0 libvirt-daemon-system libvirt-clients nfs-common sosreport open-iscsi libguestfs-tools libnl-route-3-dev
