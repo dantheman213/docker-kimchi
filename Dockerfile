@@ -1,10 +1,10 @@
 FROM debian:10
 
-ENV LANG="en_US.UTF-8"
 ENV DEBIAN_FRONTEND noninteractive
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
-RUN apt-get update && apt-get install -y git wget python3-pip pkg-config libnl-route-3-dev
+RUN apt-get update && \
+    apt-get install -y git nano wget python3-pip pkg-config libnl-route-3-dev
 RUN pip3 install ethtool
 
 # Install Wok Dependencies

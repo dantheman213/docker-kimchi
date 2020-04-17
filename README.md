@@ -8,6 +8,7 @@ https://hub.docker.com/repository/docker/dantheman213/kimchi
 
 ```
 docker run -d --restart=always --name kimchi \
+  -e /run/dbus/system_bus_socket:/run/dbus/system_bus_socket:ro \
   -v /etc/passwd:/etc/passwd:ro \
   -v /run:/run \
   -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
@@ -22,8 +23,7 @@ docker run -d --restart=always --name kimchi \
   -p 8001:8001 \
   --user 0:0 \
   --privileged \
-  dantheman213/kimchi:latest \
-  /usr/sbin/init
+  dantheman213/kimchi:latest
 ```
 
 ## Reference
