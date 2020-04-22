@@ -1,0 +1,30 @@
+version: '3.1'
+services:
+  kimchi:
+      container_name: kimchi
+      image: dantheman213/kimchi:latest
+      user: 0:0
+      privileged: true
+      restart: always
+      ports:
+        - 8001:8001
+      volumes:
+        - /etc/passwd:/etc/passwd:ro
+        - /run:/run
+        - /sys/fs/cgroup:/sys/fs/cgroup:ro
+        - /etc/group:/etc/group:ro
+        - /etc/shadow:/etc/shadow:ro
+        - /var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock
+        - /var/lib/libvirt:/var/lib/libvirt
+        - /etc/libvirt:/etc/libvirt
+        - /your-data/VM:/storage
+        - /your-data/kimchi/wok/ssl/dhparams.pem:/etc/wok/dhparams.pem:ro
+        - /your-data/kimchi/wok/ssl/wok.crt:/etc/wok/wok-cert.pem:ro
+        - /your-data/kimchi/wok/ssl/wok.key:/etc/wok/wok-key.pem:ro
+        - /your-data/kimchi/kimchi/ssl/kimchi.crt:/etc/kimchi/kimchi-cert.pem:ro
+        - /your-data/kimchi/kimchi/ssl/kimchi.key:/etc/kimchi/kimchi-key.pem:ro
+      environment:
+        PUID: 0
+        GUID: 0
+      network_mode: "bridge"
+
